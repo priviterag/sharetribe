@@ -19,7 +19,7 @@ module ListingIndexService::Search
       search = HashUtils.rename_keys({:listing_shape_ids => :listing_shape_id}, search)
 
       if needs_db_query?(search) && needs_search?(search)
-        Result::Error.new(ArgumentError.new("Both DB query and search engine would be needed to fulfill the search"))
+        return Result::Error.new(ArgumentError.new("Both DB query and search engine would be needed to fulfill the search"))
       end
 
       if needs_search?(search)
